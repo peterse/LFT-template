@@ -1,0 +1,19 @@
+sudo: false
+language: python
+cache: pip
+
+branches:
+  only:
+    - master
+
+before_install:
+  - pip install --upgrade pip setuptools wheel
+
+matrix:
+  include:
+  - os: linux
+    env: NAME=prepare_pull_request
+    python: "3.5.2"
+    install:
+      - pip install -r requirements.txt
+    script: ./prepare_pr.sh
